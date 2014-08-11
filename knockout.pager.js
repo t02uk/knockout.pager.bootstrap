@@ -8,12 +8,12 @@
     };
 
     templateEngine.addTemplate("ko_pager_links", "\
-        <div class='pager' data-bind='if: totalPages() > 1'>\
-            <span class='first-page-link'><a class='pager-button fa fa-fast-backward' data-bind='click: page.bind($data, 1), enable: page() > 1, css: {disabled: page() == 1}'></a></span>\
-            <span class='pager-pages' data-bind='foreach: relativePages'>\
-                <span class='pager-page'><a class='pager-button' href='#' data-bind='click: $parent.page.bind($parent, $data), text: $data, css: { selected: $parent.page() == $data }'></a></span>\
-            </span>\
-            <span class='last-page-link'><a class='pager-button fa fa-fast-forward' data-bind='click: page.bind($data, totalPages()), enable: page() < totalPages(), css: { disabled: page() == totalPages() }'></a></span>\
+        <ul class='pagination' data-bind='if: totalPages() > 1'>\
+            <li class='first'><a data-bind='click: page.bind($data, 1), enable: page() > 1, css: {disabled: page() == 1}'>&laquo;</a></li>\
+            <!-- ko foreach: relativePages -->\
+              <li data-bind='css: { active: $parent.page() == $data }'><a class='pager-button' href='#' data-bind='click: $parent.page.bind($parent, $data), text: $data'></a></li>\
+            <!-- /ko -->\
+            <li class='last'><a data-bind='click: page.bind($data, totalPages()), enable: page() < totalPages(), css: { disabled: page() == totalPages() }'>&raquo;</a></li>\
         </div>\
     ");
 
